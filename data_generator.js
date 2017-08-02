@@ -1,4 +1,4 @@
-/*
+/* I understand basically all of this file.
  * NOTE: This file generates fake tweet data, and is not intended to be part of your implementation.
  * You can safely leave this file untouched, and confine your changes to index.html.
  */
@@ -36,7 +36,7 @@ var tags = ['#techlife', '#burningman', '#sf', 'but only i know how', 'for real'
 var randomMessage = function(){
   return [randomElement(opening), randomElement(verbs), randomElement(objects), randomElement(nouns), randomElement(tags)].join(' ');
 };
-
+//what about a change here
 // generate random tweets on a random schedule
 var generateRandomTweet = function(){
   var tweet = {};
