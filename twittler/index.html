@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="jquery.js"></script>
+    <script src="data_generator.js"></script>
+    <!-- <link rel="stylesheet/text" href="main.css"></link> -->
+    <link href="main.css" type="text/css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/Tweety_Bird.png">
+
+    <script src="js/moment.js"></script>
+
+    <title>Twittler</title>
+    <style>
+    </style>
+  </head>
+  <body>
+
+<!-- <img src = 'img2.png' height='40' width='40'> -->
+
+
+    <script>
+
+    var $body = $('body');
+
+    var createForm = function() {
+      // create a form.
+      // create a button
+
+      // when the button is clicked call create tweet with the data in the form
+
+
+
+    }
+
+    var createTweet = function(tweet, $body) {
+        var $tweet = $('<div></div>');
+        var timeStamp = tweet.created_at;
+        var $username = $('<div></div>');
+
+        $username.text('@' + tweet.user);
+        $username.user = tweet.user;
+        $username.attr('data', tweet.user);
+        $username.click(function() {
+          showTimeline($username.attr('data'));
+
+        })
+        $username.appendTo($tweet);
+        $tweet.append(': ' + tweet.message + ' Tweeted at: ' + moment(timeStamp).fromNow());
+        $('<p>').appendTo($tweet);
+        $tweet.addClass("tweet");
+        $tweet.appendTo($body);
+    }
+      var showTimeline = function(username) {
+        $body.html('');
+        console.log("timeline" + username);
+        var heading = $('h1');
+
+        var button2 = $('<button></button>');
+        button2.text('Go home');
+        button2.appendTo($body);
+        button2.addClass('button');
+        button2.click(function() {
+          showHome();
+        });
+        // streams.users[username];
+        var usersTweets = streams.users[username];
+
+        for (var i = 0; i < usersTweets.length; i++){
+          createTweet(usersTweets[i], $body);
+        }
+
+      }
+
+      var showHome = function() {
+
+        $body.html('');
+
+        var button1 = $('<button></button>');
+        button1.text('Show new tweets');
+        button1.appendTo($body);
+        button1.addClass('button');
+
+        var index = streams.home.length - 1;
+        button1.click(function() {
+          var tweet = streams.home[index];
+          createTweet(tweet, $body);
+          index -= 1;
+        });
+      }
+
+      $(document).ready(function(){
+        showHome();
+
+        /*
+        var index = streams.home.length - 1;
+        while(index >= 0){
+          var tweet = streams.home[index];
+          var $tweet = $('<div></div>');
+          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweet.appendTo($body);
+          index -= 1;
+        }*/
+
+
+        // console.log($username.user);
+        // var uIndex = streams.users["shawndrost"].length - 1;
+        // while(uIndex >= 0){
+        //   var tweet = streams.users["shawndrost"][uIndex];
+        //   var $tweet = $('<div></div>');
+        //   $tweet.text('@' + streams.users["shawndrost"] + ': ' + streams.users["shawndrost"].message);
+        //   $tweet.appendTo($body);
+        //   uIndex -= 1;
+        // }
+        // console.log(tweet.user + "hello");
+
+      });
+
+    </script>
+
+
+      <img src = 'img2.png' height='40' width='40'>
+  </body>
+</html>
